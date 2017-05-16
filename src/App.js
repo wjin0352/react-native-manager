@@ -11,16 +11,15 @@ import Router from './Router';
 class App extends Component {
   componentWillMount() {
     // Initialize Firebase
-    const config = {
-      apiKey: 'AIzaSyAsDtmDoIL-cPYgxTtq4OB-DBanBw7D7Vw',
-      authDomain: 'manager-7996b.firebaseapp.com',
-      databaseURL: 'https://manager-7996b.firebaseio.com',
-      projectId: 'manager-7996b',
-      storageBucket: 'manager-7996b.appspot.com',
-      messagingSenderId: '37145095904'
-    };
-
-    firebase.initializeApp(config);
+ var config = {
+    apiKey: "AIzaSyD4lK8dhpY35bWMDW5OKj3tWMgkN03T7D0",
+    authDomain: "react-native-sample-66b63.firebaseapp.com",
+    databaseURL: "https://react-native-sample-66b63.firebaseio.com",
+    projectId: "react-native-sample-66b63",
+    storageBucket: "react-native-sample-66b63.appspot.com",
+    messagingSenderId: "619363307946"
+  };
+  firebase.initializeApp(config);
   }
 
   render() {
