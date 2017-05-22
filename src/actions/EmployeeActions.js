@@ -2,7 +2,8 @@ import firebase from 'firebase';
 import { Actions } from 'react-native-router-flux';
 import {
   EMPLOYEE_UPDATE,
-  EMPLOYEE_CREATE
+  EMPLOYEE_CREATE,
+  EMPLOYEES_FETCH_SUCCESS
 } from './types';
 
 export const employeeUpdate = ({ prop, value }) => {
@@ -26,5 +27,17 @@ export const employeeCreate = ({ name, phone, shift }) => {
         dispatch({ type: EMPLOYEE_CREATE });        
         Actions.employeeList({ type: 'reset' });
     });
+  };
+};
+
+export const employeesFetch = () => {
+  const { currentUser } = firebase.auth();
+
+  // once this firebase event handler is triggered it for the life of the app will run the function inside any time new data values come across. In this case will, run a dispatch method with the payload from snapshot.val()
+  return (dispatch) => {
+    firebase.database().ref(`/users/${currentUser.uid}/employees`)
+      .on('value', snapshot => {
+        dispatch({ type: EMPLOYEES_FETCH_SUCCESS, payload: snapshot.val() });
+      }); 
   };
 };
